@@ -7,9 +7,21 @@ once by editing their names as plain text. Select files on a panel, run the
 plugin, edit the names in the built-in editor (one per line), save and close —
 every line you changed renames its file.
 
-Inspired by the FAR Manager plugin *VisRen*. This is a personal, vibecoded plugin
-that I use daily because batch renaming is otherwise painful — shared in case it's
-useful to you too. No warranty, no support promised. It works for me. 🙂
+Inspired by the FAR Manager plugin *VisRen*.
+
+## ⚠️ Disclaimer
+
+This plugin was **100% vibecoded** together with an AI assistant (Claude). It is a
+personal tool that I use daily because batch renaming is otherwise painful, shared
+in case it's useful to you too.
+
+- **No warranty of any kind.** Provided "as is" (see [LICENSE](LICENSE)).
+- **Use at your own risk.** It renames files on disk. Try it on copies / a test
+  folder first and make sure you understand the [footguns](#safety--caveats-footguns)
+  below.
+- **No support or maintenance promised.** Issues/PRs welcome but may go unanswered.
+
+It works for me. 🙂
 
 ## Install (prebuilt)
 
