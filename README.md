@@ -7,6 +7,12 @@ once by editing their names as plain text. Select files on a panel, run the
 plugin, edit the names in the built-in editor (one per line), save and close —
 every line you changed renames its file.
 
+![Renamus demo](docs/demo.gif)
+
+*Select the files → their names open in the editor → edit as plain text, save
+and close. Above, `notes.txt` / `photo.jpg` / `report.txt` all get a `2026_`
+prefix in one step.*
+
 Inspired by the FAR Manager plugin *VisRen*.
 
 ## ⚠️ Disclaimer
