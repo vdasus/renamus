@@ -25,30 +25,50 @@ It works for me. 🙂
 
 ## Install (prebuilt)
 
-Grab the release archive, unpack it, and copy the `renamus` folder into your
-far2l `Plugins` directory:
+1. **Download** the archive for your platform from the
+   [latest release](https://github.com/vdasus/renamus/releases/latest):
 
-```
-cp -R renamus <your-far2l>/Plugins/
-```
+   | Platform | Asset |
+   |----------|-------|
+   | macOS (Intel, x86_64) | `renamus-0.2.0-macos-x86_64.zip` |
+   | Linux (glibc, x86_64) | `renamus-0.2.0-linux-x86_64.zip` |
 
-Typical `Plugins` locations:
-- macOS app bundle: `far2l.app/Contents/MacOS/Plugins/`
-- Linux install:    `/usr/lib/far2l/Plugins/`  (or `<prefix>/lib/far2l/Plugins/`)
+   Built against far2l 2.8 (FARMANAGERVERSION 2.6). The binary must match your
+   far2l's OS/architecture — for anything else (ARM, musl, …) build from source
+   (below). On macOS the binary is unsigned: if Gatekeeper complains, run
+   `xattr -dr com.apple.quarantine renamus`.
 
-Final layout:
+2. **Unpack** it. You get a ready-to-copy `renamus/` folder.
 
-```
-Plugins/renamus/plug/renamus.far-plug-wide
-Plugins/renamus/plug/RenamusEng.hlf
-```
+3. **Find your far2l `Plugins` directory:**
+   - macOS app bundle: `far2l.app/Contents/MacOS/Plugins/`
+   - Linux install: `/usr/lib/far2l/Plugins/` (or `<prefix>/lib/far2l/Plugins/`)
+   - Per-user (either OS): `~/.config/far2l/Plugins/`
 
-Restart far2l. Use it: select files on a panel, **F11 → Renamus**, edit names,
-**F2** to save, **F10/Esc** to close.
+4. **Copy** the folder in:
 
-> The prebuilt binary is **macOS x86_64**, built against far2l 2.8
-> (FARMANAGERVERSION 2.6). It must match your far2l's OS/architecture — build from
-> source otherwise (below).
+   ```sh
+   # macOS example
+   cp -R renamus /Applications/far2l.app/Contents/MacOS/Plugins/
+
+   # Linux example
+   cp -R renamus ~/.config/far2l/Plugins/
+   ```
+
+   Resulting layout:
+
+   ```
+   Plugins/renamus/plug/renamus.far-plug-wide
+   Plugins/renamus/plug/RenamusEng.hlf
+   ```
+
+5. **Restart far2l** (it scans plugins at startup). If it doesn't appear, make
+   sure you are not launching with `-co` / a stale plugin cache.
+
+### Use it
+
+Select files on a panel → **F11 → Renamus** → edit the names in the editor →
+**F2** to save → **F10**/**Esc** to close. Changed lines rename their files.
 
 ## Build from source
 
