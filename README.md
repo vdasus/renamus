@@ -9,9 +9,9 @@ every line you changed renames its file.
 
 ![Renamus demo](docs/demo.gif)
 
-*Select the files → their names open in the editor → edit as plain text, save
-and close. Above, `notes.txt` / `photo.jpg` / `report.txt` all get a `2026_`
-prefix in one step.*
+*Panel → select files → their names open in the editor → edit as plain text →
+save & close and they're renamed. Above, `notes.txt` / `photo.jpg` /
+`report.txt` all get a `2026_` prefix in one step.*
 
 Inspired by the FAR Manager plugin *VisRen*.
 
