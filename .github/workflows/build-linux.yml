@@ -1,0 +1,62 @@
+name: Build Linux binary
+
+# Manual, one-shot build of the Linux x86_64 plugin binary.
+# Run it from the Actions tab; the zip is uploaded as a run artifact and, if a
+# release tag is given, attached to that GitHub Release.
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag to attach the zip to (blank = artifact only)"
+        required: false
+        default: "v0.2.0"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout plugin
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++
+
+      - name: Fetch far2l headers
+        run: git clone --depth 1 https://github.com/elfmz/far2l.git far2l-src
+
+      - name: Read version
+        id: ver
+        run: |
+          v=$(grep -oP 'RENAMUS_VERSION\s+"\K[0-9.]+' src/Version.hpp | head -1)
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        run: |
+          cmake -G Ninja -B build -DFAR2L_SRC="$PWD/far2l-src"
+          ninja -C build
+
+      - name: Package
+        id: pkg
+        run: |
+          name="renamus-${{ steps.ver.outputs.version }}-linux-x86_64"
+          mkdir -p stage/renamus/plug
+          cp build/renamus/plug/renamus.far-plug-wide stage/renamus/plug/
+          cp configs/plug/RenamusEng.hlf stage/renamus/plug/
+          cp README.md stage/renamus/
+          (cd stage && zip -rq "../${name}.zip" renamus)
+          echo "zip=${name}.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Upload run artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pkg.outputs.zip }}
+          path: ${{ steps.pkg.outputs.zip }}
+
+      - name: Attach to release
+        if: ${{ inputs.release_tag != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ inputs.release_tag }}" "${{ steps.pkg.outputs.zip }}" --clobber
