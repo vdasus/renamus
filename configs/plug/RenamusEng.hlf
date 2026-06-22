@@ -1,0 +1,15 @@
+.Language=English,English
+.PluginContents=Renamus visual rename
+
+@Contents
+$ #Renamus visual rename#
+    Select files on the active panel and run Renamus from the plugins
+    menu (F11). The names of the selected files are opened in the built-in
+    editor, one per line.
+
+    Edit the lines as plain text, then save and close the editor (F2, Esc).
+    Each file whose line changed is renamed to the new name. A name may
+    include a relative path to move the file into a subdirectory.
+
+    Do not add or remove lines: the number of lines must stay equal to the
+    number of selected files, otherwise nothing is renamed.
