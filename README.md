@@ -116,6 +116,15 @@ renames are listed by name (with a reason) in a dialog after the run. Still:
 Set `RENAMUS_DEBUG=/path/to/log` before launching far2l to append a trace
 (selection, editor result, per-file `MoveFile` outcome).
 
+## Requirements
+
+[far2l](https://github.com/elfmz/far2l) — the two-panel file manager this plugin
+runs in. Get it from the official repository: **https://github.com/elfmz/far2l**
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+Made for [far2l](https://github.com/elfmz/far2l). Not affiliated with the far2l project.
